@@ -114,7 +114,7 @@ Rscript --vanilla labs/NN_slug.R
 For labs that create plots, suppress file output during validation:
 
 ```sh
-Rscript --vanilla -e 'pdf(NULL); source("labs/NN_slug.R")'
+Rscript --vanilla -e "pdf(NULL); source('labs/NN_slug.R')"
 ```
 
 Fix errors caused by the lab and rerun validation.

@@ -37,6 +37,23 @@ For a normal lab-generation task:
 - do not add dependencies or project infrastructure unless the requested lab clearly requires them
 - finish and validate the requested lab, report the result, and stop
 
+## Batch tasks
+
+The default remains one task = one lab.
+
+When the user explicitly requests multiple labs in one task, treat the request as a sequential batch:
+
+1. Process labs only in the requested order.
+2. Work on one lab at a time using that lab's section in `LABS.md`.
+3. Validate the current lab using the normal validation rules.
+4. If validation fails, fix and revalidate the current lab before doing anything else.
+5. Move to the next lab only after the current lab validates successfully.
+6. If validation cannot be executed or a blocker cannot be resolved, stop the batch and report the blocker instead of skipping ahead.
+
+Do not parallelize lab generation unless the user explicitly asks for it. Do not wait for user approval between successful labs in the same batch.
+
+At the end of a successful batch, report only the labs changed, each lab's validation result, and any notable blocker or deviation. Do not modify labs outside the requested batch.
+
 ## Lab file contract
 
 Each lab is one self-contained R script that can be studied directly in RStudio.

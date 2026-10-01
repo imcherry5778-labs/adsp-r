@@ -38,7 +38,7 @@ cat("각 변수의 표준화 전후 표준편차:\n")
 print(round(data.frame(raw_sd = apply(USArrests, 2, sd),
                        scaled_sd = apply(arrests_scaled, 2, sd)), 3))
 # raw_sd에서 Assault 약 83.34와 Murder 약 4.36을 비교한다.
-# scaled_sd는 모두 1이다. 단위·크기의 영향은 줄지만 변수 관계는 같아지지 않는다.
+# scaled_sd는 모두 1이다. 표준편차를 맞춘 것이며, 변수들이 서로 같은 값이 되거나 똑같이 중요한 변수가 되는 것은 아니다.
 
 # 실험 B: 거리를 먼저 만든 뒤 MDS 좌표를 얻는다.
 original_dist <- dist(arrests_scaled)
@@ -102,7 +102,8 @@ plot(pca_scaled$x[, 1:2], pch = 19, col = "gray50", asp = 1,
 text(pca_scaled$x[1:3, 1:2], labels = rownames(USArrests)[1:3], pos = 3, cex = 0.8)
 # 두 그림에서 주들의 상대적 배치를 비교한다. 축 방향이 뒤집혀 보일 수 있다.
 # 이번처럼 유클리드 거리를 쓰는 고전적 MDS와 같은 자료의 PCA는
-# 같은 점 사이 거리 배치를 얻을 수 있다. 그림이 닮아도 설명하는 목적을 구분한다.
+# 같은 점 사이 거리 배치를 얻을 수 있다. 이 특수한 관계가 MDS와 PCA가 일반적으로 같은 방법이라는 뜻은 아니다.
+# 그림이 닮아도 설명하는 목적을 구분한다.
 
 # 5. 결과 해석 ----------------------------------------------------
 # MDS의 두 좌표는 '어떤 주끼리 가까운가'를 거리 관계로 읽는다.

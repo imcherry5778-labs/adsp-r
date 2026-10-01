@@ -114,8 +114,8 @@ plot(passenger_changes, main = "diff(AirPassengers)", xlab = "Year",
 
 # 5. 결과 해석 ----------------------------------------------------
 # 분해: observed의 모양 → trend의 장기 변화 → seasonal의 반복 → random의 나머지.
-# 정상 순수 AR(p): ACF는 점차 감소, PACF는 p 뒤 절단하는 교과서적 heuristic이다.
-# 정상 순수 MA(q): ACF는 q 뒤 절단, PACF는 점차 감소하는 교과서적 heuristic이다.
+# 정상 순수 AR(p): ACF는 절단되지 않고 감쇠(tail off; 경우에 따라 진동), PACF는 p 뒤 절단하는 교과서적 heuristic이다.
+# 정상 순수 MA(q): ACF는 q 뒤 절단, PACF는 절단되지 않고 감쇠(tail off)하는 교과서적 heuristic이다.
 # 이 규칙은 정상 순수 AR/MA의 이론적 패턴이며 유한 표본에서는 근사적으로 본다.
 # ARMA 혼합 모형이나 비정상 원자료에 같은 절단 규칙을 일반화하지 않는다.
 # 추세 관찰, 계절성 관찰, ACF/PACF의 시차 관계 해석은 서로 다른 읽기이다.

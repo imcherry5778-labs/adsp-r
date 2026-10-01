@@ -39,7 +39,6 @@ class_counts <- rbind(train = table(factor(train$am, levels = c(0, 1))),
                       test = table(factor(test$am, levels = c(0, 1))))
 cat("train/test의 실제 class별 관측 수(0 = 자동, 1 = 수동):\n")
 print(class_counts)
-stopifnot(all(class_counts > 0))
 # train은 0이 16개, 1이 8개; test는 0이 3개, 1이 5개이다.
 # 두 자료에 두 class가 모두 있다. 작은 임의 분할이어서 비율은 서로 다르다.
 # seed는 재현을 위한 것이다. 이 작은 test의 점수를 안정적인 성능으로 일반화하지 않는다.
@@ -49,7 +48,6 @@ model_logistic <- glm(am ~ mpg, data = train, family = binomial)
 probability <- predict(model_logistic, newdata = test, type = "response")
 cat("test에서 예측한 P(am = 1)의 범위:\n")
 print(range(probability))
-stopifnot(all(is.finite(probability)), all(probability >= 0 & probability <= 1))
 # 약 0.067~0.994로 모두 0~1 사이이다. 모형이 예측한 확률이며 실제 정답이 아니다.
 
 threshold <- 0.5

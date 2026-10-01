@@ -77,7 +77,7 @@ Keep R function names, object names, statistical notation, and standard technica
 ## R conventions
 
 - Prefer Base R and recommended R packages when they are sufficient.
-- Use the dataset and R surface defined for the requested lab in `LABS.md`.
+- Use the dataset and cover the R surface defined for the requested lab in `LABS.md`. The R surface lists key functions/features the learner should encounter; it is not an exhaustive whitelist of helper calls.
 - Keep each script independently runnable.
 - Use `set.seed()` when randomness is involved.
 - Do not use `install.packages()`.

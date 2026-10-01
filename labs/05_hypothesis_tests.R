@@ -67,7 +67,7 @@ print(category_test$expected)
 # X-squared는 관측도수가 기대도수에서 벗어난 정도를 요약하며 음수가 아니다.
 # 기본 2 × 2 표 검정은 연속성 보정을 사용하여 X-squared = 18.05이다.
 # p-value < 0.05이므로 독립이라는 H0를 기각한다. 평균 차이 검정이 아니다.
-# 기대도수가 충분한 예제를 사용했다. 매우 작은 도수에서는 근사에 주의한다.
+# 기대도수가 충분한 예제를 사용했다. 기대도수가 너무 작으면 카이제곱 근사에 주의한다.
 # 집단과 결과의 관련성이 곧 집단의 인과적 효과를 증명하는 것은 아니다.
 
 # 실험 C: 같은 두 집단을 원래 값 대신 순위에 기반해 비교한다.
@@ -100,11 +100,12 @@ print(c(p_value = rank_test$p.value, alpha = alpha))
 # 데이터와 t 검정 결과는 두고 alpha만 0.05에서 0.001로 바꿔 비교한다.
 # 예상: 약 0.00137인 p-value는 새 기준보다 작은가? 기각 여부가 바뀌는가?
 stricter_alpha <- 0.001
-print(c(p_value = mean_test$p.value,
-        reject_at_0.05 = mean_test$p.value < alpha,
-        reject_at_0.001 = mean_test$p.value < stricter_alpha))
-# 숫자 벡터에서 TRUE는 1, FALSE는 0으로 출력된다.
-# 0.05에서는 기각(1), 더 엄격한 0.001에서는 기각하지 못함(0)이다.
+print(data.frame(
+  p_value = mean_test$p.value,
+  reject_at_0.05 = mean_test$p.value < alpha,
+  reject_at_0.001 = mean_test$p.value < stricter_alpha
+))
+# 0.05에서는 TRUE로 기각, 더 엄격한 0.001에서는 FALSE로 기각하지 못함이다.
 # p-value는 변하지 않는다. 판단 기준이 달라져 결론이 달라진다.
 # 이 비교는 학습용이다. 실제 검정에서 결과를 본 뒤 유리한 alpha를 고르지 않는다.
 

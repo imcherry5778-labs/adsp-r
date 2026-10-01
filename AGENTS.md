@@ -50,7 +50,7 @@ When the user explicitly requests multiple labs in one task, treat the request a
 5. Move to the next lab only after the current lab validates successfully.
 6. If validation cannot be executed or a blocker cannot be resolved, stop the batch and report the blocker instead of skipping ahead.
 
-Do not parallelize lab generation unless the user explicitly asks for it. Do not wait for user approval between successful labs in the same batch.
+Batch lab generation is sequential; do not parallelize labs. Do not wait for user approval between successful labs in the same batch.
 
 At the end of a successful batch, report only the labs changed, each lab's validation result, and any notable blocker or deviation. Do not modify labs outside the requested batch.
 

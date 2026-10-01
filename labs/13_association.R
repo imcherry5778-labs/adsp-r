@@ -9,8 +9,8 @@
 # 2. 핵심 개념과 작은 예제 ----------------------------------------
 # Lab 12는 관측치를 군집으로 나눴다. 이번에는 거래 안의 항목 동반 발생을 살핀다.
 # A와 B는 가상 상품이다. itemset {A, B}는 두 항목을 함께 묶은 것이다.
-# association rule A → B는 A가 포함된 거래에서 B도 포함되는 비율을 살피는 규칙이다.
-# 왼쪽 A는 조건 항목, 오른쪽 B는 결론 항목(consequent)이다. B → A와 방향이 다르다.
+# association rule A → B는 A를 조건 항목, B를 결론 항목(consequent)으로 둔 방향 있는 규칙이다.
+# 이 규칙의 confidence는 A가 포함된 거래 중 B도 포함된 비율이다. B → A와는 방향이 다르다.
 # 이 규칙은 거래를 class로 예측하거나 cluster에 배정하는 결과가 아니다.
 
 N <- 100
@@ -59,8 +59,8 @@ lift_B_to_A <- confidence_B_to_A / support_A
 cat("lift: 각 confidence를 결론 항목의 기본 발생률로 나눈 값:\n")
 print(c("A → B" = lift_A_to_B, "B → A" = lift_B_to_A))
 # A → B는 0.75/0.50 = 1.5: A가 있는 거래에서 B의 비율이 기본 발생률의 1.5배이다.
-# B → A도 0.60/0.40 = 1.5이다. 두 방향의 confidence가 달라도 이 lift는 같다.
-# 같은 A와 B의 lift는 (count_AB/N) / ((count_A/N) × (count_B/N))로도 읽을 수 있다.
+# B → A도 0.60/0.40 = 1.5이다. 같은 두 항목 A와 B에서 confidence는 일반적으로 방향에 따라 다르지만 lift는 방향을 뒤집어도 같다.
+# lift는 (count_AB/N) / ((count_A/N) × (count_B/N))로도 쓸 수 있어 이 대칭성을 확인할 수 있다.
 
 # 5. 결과 해석 ----------------------------------------------------
 # support는 전체 중 공동 발생, confidence는 조건 항목 중 동반 발생의 비율이다.

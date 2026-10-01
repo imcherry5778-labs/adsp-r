@@ -30,13 +30,13 @@ print(iris[1:3, ])
 # 4. 직접 실행 ----------------------------------------------------
 # 실험 A: 사용할 수 있을 때 rpart로 작은 분류 트리를 만든다.
 # Species ~ .은 Species를 나머지 네 변수로 설명한다는 뜻이다.
-# maxdepth = 2로 경로에서 최대 두 번만 분기한다. xval = 0으로 별도 재표집 계산은 생략한다.
+# maxdepth = 2로 경로에서 최대 두 번만 분기한다. cp = 0으로 교육용 깊이 제한 안에서 분기를 미리 막지 않고, xval = 0으로 별도 재표집 계산은 생략한다.
 # 이번에는 분기 읽기에 집중하므로 iris 전체로 적합한다. test 성능을 평가하는 실험은 아니다.
 tree_available <- requireNamespace("rpart", quietly = TRUE)
 if (tree_available) {
   tree_model <- rpart::rpart(
     Species ~ ., data = iris, method = "class",
-    control = rpart::rpart.control(maxdepth = 2, xval = 0)
+    control = rpart::rpart.control(maxdepth = 2, cp = 0, xval = 0)
   )
   cat("분류 트리: 노드 번호, 분기 조건, 말단의 * 표시를 찾으세요.\n")
   print(tree_model)

@@ -68,7 +68,8 @@ print(example_values[is_candidate])
 # 상자와 수염, 별도 점을 구분한다. 점선은 직접 계산한 판정 경계이다.
 boxplot(example_values, main = "1.5 * IQR", ylab = "x", ylim = c(0, 45))
 abline(h = c(lower_fence, upper_fence), lty = 2, col = "gray40")
-# 이 예제의 상자는 Q1 = 12부터 Q3 = 16까지이고 가운데 선은 중앙값 14이다.
+# 이 예제에서는 quantile()의 Q1/Q3와 boxplot의 hinge가 일치해 상자는 12부터 16까지이고 가운데 선은 중앙값 14이다.
+# 데이터 개수에 따라 boxplot의 hinge와 quantile()의 25%/75% 값은 약간 다를 수 있다.
 # 수염 끝은 후보가 아닌 실제 관측값 10과 17이다. 점선 경계 6과 22가 아니다.
 # 40은 위 수염과 떨어진 점으로 표시된다. 크다는 이유만으로 결측값이 되지 않는다.
 

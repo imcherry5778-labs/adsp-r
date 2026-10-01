@@ -144,7 +144,7 @@ print(c(theta_positive = as.numeric(ma_acf$acf)[2],
 # 1) trend는 장기 수준, seasonal은 주기적인 계절 비율, random은 설명되지 않은 비율이다.
 #    observed = trend × seasonal × random이다. 뒤의 두 성분은 승객 수가 아니다.
 # 2) ACF는 시차별 상관, PACF는 중간 시차의 영향을 제거한 상관이다.
-# 3) PACF이다. ACF는 점차 감소한다. 정상 순수 AR의 교과서적 규칙이다.
+# 3) PACF이다. ACF는 절단되지 않고 감쇠한다. 정상 순수 AR의 교과서적 규칙이다.
 # 4) lag 1 뒤이다. 표본에서는 오차가 있어 정확히 0이 아니며 일부 막대가 튈 수 있다.
 # 5) ARMA는 AR과 MA의 결합, ARIMA는 차분 횟수 d를 포함한다(d = 0이면 ARMA).
 #    차분은 비정상성을 줄이는 역할이며 한 번의 차분이 정상성을 보장하지 않는다.

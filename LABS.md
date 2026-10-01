@@ -28,13 +28,13 @@ The curriculum focuses on R basics/data marts, statistical analysis, and structu
 ## Lab 02 — Data Handling
 
 - **File:** `labs/02_data_handling.R`
-- **Outcome:** Select observations by condition; combine small data frames; recognize apply-family behavior and legacy data-manipulation vocabulary.
-- **Concepts:** logical indexing, filtering, joining/merging, split-apply-combine, reshape vocabulary.
+- **Outcome:** Select observations by condition; combine small data frames; recognize apply-family behavior and ADsP data-manipulation vocabulary.
+- **Concepts:** logical indexing, filtering, joining/merging, split-apply-combine, data-manipulation vocabulary.
 - **R surface:** `[]`, `subset()`, `merge()`, `apply()`, `lapply()`, `sapply()`.
 - **Dataset:** Small inline data frames.
 - **Must interpret:** condition results; matched/unmatched rows in `merge()`; list vs simplified apply results; purpose of reshape, plyr, sqldf, and data.table at recognition level.
 - **Key contrast:** `lapply()` vs `sapply()`; vocabulary recognition vs package mastery.
-- **Out of scope:** Installing/teaching legacy package APIs in depth, tidyverse workflow, large-data engineering.
+- **Out of scope:** Installing/teaching reshape/plyr/sqldf/data.table APIs in depth, tidyverse workflow, large-data engineering.
 
 ## Lab 03 — Missing Values, Outliers, and Binning
 

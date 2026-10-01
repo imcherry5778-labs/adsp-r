@@ -2,106 +2,137 @@
 
 ## Purpose
 
-This repository is a small set of hands-on RStudio labs for preparing for the ADsP exam.
+This repository contains small RStudio labs for preparing for the ADsP exam.
 
-The goal is not to teach production R development. The goal is to connect:
+The goal is not production R development or a full R course. Each lab should help the learner connect:
 
-ADsP concept -> small R example -> observed output/plot -> exam-oriented interpretation
+ADsP concept -> predict -> run R code -> inspect output/plot -> interpret -> exam check
 
-Prefer learning value and exam relevance over software-engineering ceremony.
+Prefer exam relevance, conceptual clarity, and runnable examples over software-engineering ceremony.
 
-## Source of truth
+## Learner
 
-- Use `LABS.md` for the curriculum and the scope of each lab.
-- For a lab task, implement only the requested lab.
+Assume the learner:
+
+- is preparing for the ADsP exam
+- is a beginner in R
+- already has R and RStudio installed
+- wants conceptual understanding and output interpretation, not R mastery
+
+## Sources of truth
+
+- `AGENTS.md` defines how lab work is performed.
+- `LABS.md` defines the curriculum and the scope of each lab.
+- For a lab task, follow only the requested lab section in `LABS.md` plus these shared rules.
+- Do not edit `LABS.md` or redesign the curriculum unless the user explicitly asks.
 - Do not expand a lab beyond its contract just because a related topic is useful.
-- Do not claim that an exercise is an actual past exam question unless a supplied source proves that.
 
-## One task, one lab
+## Task boundary
 
-A normal task should create or revise exactly one file:
+For a normal lab-generation task:
 
-`labs/NN_slug.R`
+- create or revise exactly one file: `labs/NN_slug.R`
+- do not start another lab
+- do not refactor unrelated labs
+- do not add dependencies or project infrastructure unless the requested lab clearly requires them
+- finish and validate the requested lab, report the result, and stop
 
-Do not create another lab, refactor unrelated labs, or add project infrastructure unless the user explicitly asks.
+## Lab file contract
 
-## Lab format
+Each lab is one self-contained R script that can be studied directly in RStudio.
 
-Each lab should be a self-contained R script that can be studied directly in RStudio.
+Use RStudio code sections so the script is easy to navigate:
 
-Use this learning flow when it fits the topic:
+```r
+# 1. 목표 --------------------------------------------------------
+# 2. 핵심 개념 ---------------------------------------------------
+# 3. 먼저 예상하기 -----------------------------------------------
+# 4. 직접 실행 ----------------------------------------------------
+# 5. 결과 해석 ----------------------------------------------------
+# 6. 하나 바꿔보기 ------------------------------------------------
+# 7. 시험 체크 ----------------------------------------------------
+# 정답 및 해설 ----------------------------------------------------
+```
 
-1. Goal — 1 to 3 things the learner should be able to do.
-2. Concept — short comments explaining only what is needed.
-3. Worked example — a small, complete example.
-4. Predict — ask the learner to predict a value, sign, pattern, or conclusion before running code.
-5. Run and interpret — execute code and point out what to inspect in the output or plot.
-6. Change one thing — modify one input or option and compare the result.
-7. Exam check — 3 to 5 short questions, with answers at the end of the same file.
+Use that flow when it fits the topic. Do not force a section when it adds no learning value.
 
-Keep a lab roughly 10 to 30 minutes long. Prefer a few clear experiments over broad coverage.
+A typical lab should:
 
-## R rules
+- state 1 to 3 concrete learning outcomes
+- explain only the theory needed for the experiment
+- include a small worked example
+- ask the learner to predict a value, sign, pattern, or conclusion before running code
+- make the learner inspect and interpret the important output or plot
+- change one input or option and compare the result
+- end with 3 to 5 short exam-check questions and answers
 
-Prefer Base R and packages that ship with a standard R installation when they are sufficient.
+Keep each lab roughly 10 to 30 minutes long. Prefer a few clear experiments over broad coverage.
 
-Prefer built-in datasets such as:
+## Language
 
-- `mtcars`
-- `iris`
-- `airquality`
-- `PlantGrowth`
-- `AirPassengers`
-- `USArrests`
+Learner-facing explanations, prompts, interpretations, and quizzes must be written in Korean.
 
-Do not put these in lab scripts:
+Keep R function names, object names, statistical notation, and standard technical terms idiomatic.
 
-- `install.packages()`
-- `setwd()`
-- machine-specific absolute paths
-- internet downloads
-- code that depends on objects left in the Global Environment
+## R conventions
 
-If randomness is used, call `set.seed()`.
+- Prefer Base R and recommended R packages when they are sufficient.
+- Use the dataset and R surface defined for the requested lab in `LABS.md`.
+- Keep each script independently runnable.
+- Use `set.seed()` when randomness is involved.
+- Do not use `install.packages()`.
+- Do not use `setwd()`.
+- Do not depend on objects created by another lab or left in the Global Environment.
+- Do not require internet access.
+- Do not add tidyverse or another package merely to make the code look more modern.
+- Avoid implementing algorithms from scratch when a small R example can demonstrate the exam concept more clearly.
+- A concept may be taught as a comparison or calculation without installing a package when package execution adds little learning value.
 
-Do not add tidyverse or another package merely to make code look more modern. If an ADsP concept can be demonstrated manually or with Base R, prefer that.
+## Non-interactive and side effects
 
-Some syllabus terms such as reshape/plyr/sqldf/data.table, ensemble methods, SOM, or DBSCAN may be taught as exam vocabulary or conceptual comparisons without installing packages when execution adds little learning value.
+A lab must run unattended from top to bottom.
+
+Avoid interactive-only operations such as:
+
+- `View()`
+- `readline()`
+- menus or prompts
+- click-based graphics
+
+Lab scripts must not create, modify, or download files as a side effect.
 
 ## Validation
 
-The requested lab must parse and run from top to bottom in a clean session.
+After editing a lab, validate it in a clean non-interactive session.
 
-After editing it, run:
+For labs without plotting:
 
-`Rscript --vanilla labs/NN_slug.R`
+```sh
+Rscript --vanilla labs/NN_slug.R
+```
 
-Fix errors caused by the lab and rerun it.
+For labs that create plots, suppress file output during validation:
 
-A lab should not contain intentionally broken TODO code. Questions and exercises should be comments around executable examples so the full file remains runnable.
+```sh
+Rscript --vanilla -e 'pdf(NULL); source("labs/NN_slug.R")'
+```
 
-Do not create a separate `check.R`, test framework, CI workflow, solution file, lockfile, or environment manager unless a concrete need appears and the user asks for it.
+Fix errors caused by the lab and rerun validation.
 
-## Content priorities
+If `Rscript` is unavailable, report that validation could not be executed. Never claim that validation succeeded without running it.
 
-For statistical/modeling labs, emphasize reading outputs rather than implementing algorithms from scratch.
+Do not create a separate `check.R`, solution file, test framework, CI workflow, lockfile, or environment manager unless a concrete need appears and the user explicitly asks for it.
 
-Examples:
+## Evidence and exam claims
 
-- hypothesis tests: p-value and the correct conclusion
-- regression: coefficient sign, p-value, R-squared, adjusted R-squared
-- time series: trend/seasonality and ACF/PACF patterns
-- PCA/MDS: what is being preserved or summarized
-- model evaluation: confusion-matrix metrics and their denominators
-- clustering: supervised vs. unsupervised distinctions and method characteristics
-- association rules: support, confidence, and lift
+Do not claim that an exercise is an actual past exam question unless a supplied source proves that.
 
-Include common exam traps when they materially improve understanding, but do not turn every lab into a long theory note.
+Do not claim that a topic is frequent, recently tested, or asked in a specific way unless that claim is supported by a source provided for the task.
+
+Otherwise describe the item neutrally as an ADsP exam-preparation point.
 
 ## Keep the repository simple
 
 Do not introduce infrastructure in anticipation of future needs.
 
-Add a new dependency, helper script, documentation layer, or automation only when an existing lab actually needs it and the benefit is larger than the maintenance cost.
-
-When the user asks for a lab, finish and validate that lab, report what changed, and stop.
+Add a dependency, helper script, documentation layer, or automation only when an existing task actually needs it and the benefit is larger than the maintenance cost.

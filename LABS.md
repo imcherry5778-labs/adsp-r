@@ -85,9 +85,9 @@ The curriculum focuses on R basics/data marts, statistical analysis, and structu
 - **File:** `labs/07_time_series.R`
 - **Outcome:** Recognize trend/seasonality; read decomposition; connect ACF/PACF patterns with AR/MA concepts.
 - **Concepts:** time series, trend, seasonality, irregular component, stationarity at recognition level, AR, MA, ARMA, ARIMA.
-- **R surface:** `plot()`, `decompose()`, `acf()`, `pacf()`.
-- **Dataset:** `AirPassengers`.
-- **Must interpret:** observed/trend/seasonal/random components; what ACF/PACF display; exam-level AR/MA cutoff heuristic; why differencing appears in ARIMA.
+- **R surface:** `plot()`, `decompose()`, `acf()`, `pacf()`, `arima.sim()`.
+- **Dataset:** `AirPassengers` for decomposition plus small simulated stationary AR/MA series for ACF/PACF comparison.
+- **Must interpret:** observed/trend/seasonal/random components; what ACF/PACF display; the textbook cutoff heuristic for stationary pure AR/MA processes; why differencing appears in ARIMA.
 - **Key contrast:** AR vs MA; ARMA vs ARIMA.
 - **Out of scope:** Comparing many forecast models, forecast-package workflows.
 
